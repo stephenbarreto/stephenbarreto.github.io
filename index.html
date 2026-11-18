@@ -78,7 +78,8 @@ img{display:block;max-width:100%;height:auto}
 @keyframes flutua2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-58px,64px) scale(.9)}}
 @keyframes flutua3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-50px) scale(1.16)}}
 .heroi .wrap{position:relative}
-.heroi h1 span.p{display:inline-block;overflow:hidden;vertical-align:bottom}
+.heroi h1{overflow-wrap:break-word}
+.heroi h1 span.p{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}
 .heroi h1 span.p>span{display:inline-block;transform:translateY(108%);transition:transform .9s var(--ease)}
 .pronto .heroi h1 span.p>span{transform:none}
 .marcos{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 32px}
@@ -906,6 +907,8 @@ footer a{color:rgba(246,246,243,.68)}
 
   /* entrada do herói */
   requestAnimationFrame(function(){document.body.classList.add('pronto')});
+  var noHeroi=document.querySelectorAll('.heroi [data-conta]');
+  setTimeout(function(){noHeroi.forEach(conta)}, reduz?0:650);
 
   if(!('IntersectionObserver' in window)){
     document.querySelectorAll('.sobe').forEach(function(e){e.classList.add('vis')});
@@ -916,7 +919,7 @@ footer a{color:rgba(246,246,243,.68)}
     ents.forEach(function(en){
       if(!en.isIntersecting)return;
       en.target.classList.add('vis');
-      en.target.querySelectorAll('[data-conta]').forEach(conta);
+      en.target.querySelectorAll('[data-conta]').forEach(function(c){if(!c.closest('.heroi'))conta(c)});
       io.unobserve(en.target);
     })
   },{rootMargin:'0px 0px -10% 0px',threshold:.06});
