@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stephen Barreto — Transparência pública para câmaras municipais</title>
+<meta name="description" content="Assessoria em gestão documental e transparência para câmaras municipais. A Câmara de Curral de Dentro saiu de 63,67% para 80,11% no PNTP 2026 e foi a única da região a conquistar selo.">
+<meta name="theme-color" content="#0F1115">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F6F3;
+  --branco:#fff;
+  --ink:#0F1115;
+  --suave:#5E6168;
+  --marca:#1F3BE0;
+  --marca-clara:#8FA4FF;
+  --fundo-escuro:#121A4D;
+  --alerta:#C2410C;
+  --linha:rgba(15,17,21,.12);
+  --max:1200px;
+  --r:18px;
+  --ease:cubic-bezier(.22,.68,.26,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.disp{font-family:"Sora","Inter",sans-serif;font-weight:800;letter-spacing:-.04em;line-height:1.04;margin:0}
+h1{font-size:clamp(2.7rem,6.4vw,5rem)}
+h2{font-size:clamp(2rem,4.3vw,3.3rem)}
+h3{font-family:"Sora","Inter",sans-serif;font-weight:700;letter-spacing:-.022em;font-size:1.22rem;line-height:1.22;margin:0}
+p{margin:0 0 1.05em;max-width:60ch}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+:focus-visible{outline:3px solid var(--marca);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+.ic{width:22px;height:22px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* barra de progresso */
+.progresso{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--marca);z-index:90}
+
+/* revelações */
+.sobe{opacity:0;transform:translateY(26px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.sobe.vis{opacity:1;transform:none}
+.linha-mask{display:block;overflow:hidden}
+.linha-mask>span{display:block;transform:translateY(105%);transition:transform 1s var(--ease)}
+.pronto .linha-mask>span{transform:none}
+.linha-mask:nth-child(2)>span{transition-delay:.08s}
+.linha-mask:nth-child(3)>span{transition-delay:.16s}
+.fade-tardio{opacity:0;transform:translateY(16px);transition:opacity .9s .35s var(--ease),transform .9s .35s var(--ease)}
+.pronto .fade-tardio{opacity:1;transform:none}
+
+/* navegação */
+.nav{position:sticky;top:0;z-index:50;background:rgba(246,246,243,.8);backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+.nav.presa{border-bottom-color:var(--linha)}
+.nav .wrap{display:flex;align-items:center;gap:30px;height:74px}
+.logo{font-family:"Sora",sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.035em;text-decoration:none}
+.menu{display:flex;gap:26px;margin-left:auto;font-size:.94rem}
+.menu a{text-decoration:none;color:var(--suave);transition:color .2s;position:relative}
+.menu a:after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:1.5px;background:var(--marca);transition:right .3s var(--ease)}
+.menu a:hover{color:var(--ink)}
+.menu a:hover:after{right:0}
+.zap{display:inline-flex;align-items:center;gap:9px;background:var(--marca);color:#fff;text-decoration:none;font-weight:600;font-size:.94rem;padding:12px 22px;border-radius:999px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
+.zap:hover{background:#152CB8;transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(31,59,224,.75)}
+.zap svg{width:17px;height:17px;fill:currentColor;stroke:none;flex:none}
+@media(max-width:920px){.menu{display:none}.zap{margin-left:auto}}
+
+/* herói */
+.heroi{padding:80px 0 0;position:relative;isolation:isolate}
+.aurora{position:absolute;inset:-180px -10% auto;height:860px;z-index:-1;overflow:hidden;pointer-events:none;filter:blur(72px);opacity:.62}
+.aurora i{position:absolute;display:block;border-radius:50%}
+.aurora i:nth-child(1){width:620px;height:620px;left:4%;top:-60px;background:rgba(31,59,224,.42);animation:flutua1 17s ease-in-out infinite}
+.aurora i:nth-child(2){width:520px;height:520px;right:6%;top:40px;background:rgba(143,164,255,.5);animation:flutua2 21s ease-in-out infinite}
+.aurora i:nth-child(3){width:420px;height:420px;left:42%;top:220px;background:rgba(18,26,77,.3);animation:flutua3 25s ease-in-out infinite}
+@keyframes flutua1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,46px) scale(1.12)}}
+@keyframes flutua2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-58px,64px) scale(.9)}}
+@keyframes flutua3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-50px) scale(1.16)}}
+.heroi .wrap{position:relative}
+.heroi h1 span.p{display:inline-block;overflow:hidden;vertical-align:bottom}
+.heroi h1 span.p>span{display:inline-block;transform:translateY(108%);transition:transform .9s var(--ease)}
+.pronto .heroi h1 span.p>span{transform:none}
+.marcos{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 32px}
+.marco-chip{display:inline-flex;align-items:baseline;gap:8px;background:rgba(255,255,255,.72);border:1px solid var(--linha);backdrop-filter:blur(8px);border-radius:999px;padding:9px 18px;font-size:.88rem;color:var(--suave)}
+.marco-chip b{font-family:"Sora",sans-serif;font-weight:800;font-size:1.06rem;letter-spacing:-.03em;color:var(--ink)}
+.flutuantes{position:absolute;inset:0;pointer-events:none}
+.cartaz{position:absolute;display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.93);border:1px solid var(--linha);border-radius:14px;padding:12px 17px;box-shadow:0 18px 40px -20px rgba(15,17,21,.5);font-size:.9rem;font-weight:600;opacity:0;transform:translateY(16px) scale(.94);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.pronto .cartaz{opacity:1;transform:none}
+.cartaz .ic{width:19px;height:19px;color:var(--marca)}
+.cartaz.a{left:2%;top:26%;transition-delay:1.15s;animation:bal 7s 2s ease-in-out infinite}
+.cartaz.b{right:2%;top:44%;transition-delay:1.35s;animation:bal 8s 2.6s ease-in-out infinite}
+@keyframes bal{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@media(max-width:1080px){.cartaz{display:none}}
+
+/* ticker */
+.ticker{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);background:rgba(255,255,255,.5);overflow:hidden;padding:13px 0;mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.ticker-fita{display:flex;gap:0;width:max-content;animation:corre 68s linear infinite}
+.ticker:hover .ticker-fita{animation-play-state:paused}
+.ticker span{display:inline-flex;align-items:center;gap:9px;padding:0 24px;font-size:.84rem;color:var(--suave);white-space:nowrap}
+.ticker span:after{content:"";width:4px;height:4px;border-radius:50%;background:var(--linha);margin-left:24px}
+.ticker span b{color:var(--ink);font-weight:600}
+.ticker span.eu{color:var(--marca)}
+.ticker span.eu b{color:var(--marca)}
+@keyframes corre{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.selo{display:inline-flex;align-items:center;gap:10px;font-size:.86rem;font-weight:500;color:var(--marca);background:rgba(31,59,224,.09);border:1px solid rgba(31,59,224,.18);padding:7px 15px;border-radius:999px;margin-bottom:28px}
+.pulso{width:7px;height:7px;border-radius:50%;background:var(--marca);flex:none;position:relative}
+.pulso:after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--marca);opacity:0;animation:pulso 2.4s infinite}
+@keyframes pulso{0%{transform:scale(.6);opacity:.9}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+.heroi h1{max-width:15ch;margin-bottom:26px}
+.heroi .sub{font-size:1.18rem;color:var(--suave);max-width:50ch;margin-bottom:34px}
+.acoes{display:flex;flex-wrap:wrap;gap:13px;align-items:center}
+.btn2{display:inline-flex;align-items:center;gap:9px;padding:12px 24px;border-radius:999px;border:1.5px solid var(--linha);text-decoration:none;font-weight:600;font-size:.94rem;transition:border-color .25s,background .25s,transform .25s var(--ease)}
+.btn2:hover{border-color:var(--ink);background:rgba(15,17,21,.04);transform:translateY(-2px)}
+
+/* moldura de navegador */
+.janela{border-radius:var(--r);overflow:hidden;background:#fff;box-shadow:0 2px 6px rgba(15,17,21,.06),0 30px 72px -26px rgba(15,17,21,.36);border:1px solid var(--linha)}
+.janela-barra{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#EDEDEA;border-bottom:1px solid var(--linha)}
+.bolha{width:10px;height:10px;border-radius:50%;background:#CFCFC9;flex:none}
+.janela-url{margin-left:10px;flex:1;background:#F8F8F6;border-radius:7px;padding:5px 13px;font-size:.75rem;color:var(--suave);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.heroi-arte{margin-top:62px;position:relative}
+.heroi-arte .janela{max-width:1060px;margin:0 auto;transform:perspective(1900px) rotateX(6deg) scale(.985);transform-origin:top center;transition:transform 1.1s var(--ease)}
+.pronto .heroi-arte .janela{transform:perspective(1900px) rotateX(2.5deg) scale(1)}
+.heroi-arte:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:190px;background:linear-gradient(transparent,var(--bg));pointer-events:none}
+
+/* faixa de números */
+.faixa{background:var(--ink);color:#F6F6F3;padding:72px 0;position:relative;overflow:hidden}
+.faixa:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(31,59,224,.3),transparent 55%);pointer-events:none}
+.faixa .wrap{position:relative}
+.faixa-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:40px}
+.faixa b{font-family:"Sora",sans-serif;font-weight:800;letter-spacing:-.045em;font-size:clamp(2.5rem,4.8vw,3.6rem);line-height:1;display:block}
+.faixa span{display:block;margin-top:10px;font-size:.93rem;color:rgba(246,246,243,.6);max-width:26ch}
+.faixa .fonte{margin:46px 0 0;font-size:.81rem;color:rgba(246,246,243,.42);max-width:none}
+.faixa .fonte a{color:rgba(246,246,243,.78)}
+
+section{padding:104px 0}
+.olho{display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:600;color:var(--marca);margin-bottom:16px}
+.olho .ic{width:17px;height:17px;stroke-width:1.8}
+.intro{max-width:62ch;margin-top:20px;font-size:1.1rem;color:var(--suave)}
+.nota{margin-top:28px;font-size:.93rem;color:var(--suave);max-width:72ch}
+
+/* antes e depois */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:50px}
+.cartao{border-radius:var(--r);padding:36px 32px;border:1px solid var(--linha);background:var(--branco)}
+.cartao.depois{background:var(--fundo-escuro);color:#fff;border-color:var(--fundo-escuro);position:relative;overflow:hidden}
+.cartao.depois:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0%,rgba(143,164,255,.22),transparent 58%)}
+.cartao>*{position:relative}
+.cartao .ano{font-size:.85rem;font-weight:600;color:var(--suave)}
+.cartao.depois .ano{color:rgba(255,255,255,.6)}
+.cartao .big{font-family:"Sora",sans-serif;font-weight:800;letter-spacing:-.05em;font-size:clamp(2.9rem,6.6vw,4.2rem);line-height:1;margin:14px 0 20px}
+.cartao ul{margin:0;padding:0;list-style:none;font-size:.97rem}
+.cartao li{display:flex;justify-content:space-between;gap:18px;padding:11px 0;border-top:1px solid var(--linha)}
+.cartao.depois li{border-top-color:rgba(255,255,255,.18)}
+.cartao li span:first-child{color:var(--suave)}
+.cartao.depois li span:first-child{color:rgba(255,255,255,.6)}
+.cartao li span:last-child{font-weight:600;text-align:right}
+
+/* ranking regional */
+.ranking{background:var(--branco)}
+.tabela{margin-top:48px;border-top:1px solid var(--linha)}
+.tabela{overflow:hidden}
+.rk{display:grid;grid-template-columns:26px minmax(0,1fr) 74px 104px;gap:12px;align-items:center;padding:11px 10px 11px 0;border-bottom:1px solid var(--linha);font-size:.93rem;transition:background .2s;max-width:100%}
+.rk>span{min-width:0}
+.rk .niv{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk:hover{background:rgba(15,17,21,.025)}
+.rk .pos{color:var(--suave);font-size:.8rem;text-align:right;font-variant-numeric:tabular-nums}
+.rk .cid{min-width:0;position:relative}
+.rk .cid b{font-weight:500;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk .barra{height:5px;border-radius:3px;background:rgba(15,17,21,.09);margin-top:6px;overflow:hidden}
+.rk .barra i{display:block;height:100%;border-radius:3px;background:var(--suave);width:0;transition:width 1.1s var(--ease)}
+.vis .rk .barra i{width:var(--w)}
+.rk .idx{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.rk .niv{font-size:.76rem;text-align:right;color:var(--suave)}
+.rk.topo{background:rgba(31,59,224,.055)}
+.rk.topo .cid b{font-weight:700}
+.rk.topo .barra i{background:var(--marca)}
+.rk.topo .niv{color:var(--marca);font-weight:700}
+.rk.foco .barra i{background:var(--alerta)}
+.rk.foco .niv{color:var(--alerta);font-weight:600}
+.etiq{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:5px;margin-left:8px;vertical-align:1px}
+.etiq.selo{background:var(--marca);color:#fff}
+.etiq.sem{background:rgba(194,65,12,.12);color:var(--alerta)}
+.leitura{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px;margin-top:44px}
+.leitura div{border-left:2px solid var(--marca);padding-left:18px}
+.leitura h3{font-size:1.05rem;margin-bottom:7px}
+.leitura p{margin:0;font-size:.95rem;color:var(--suave)}
+
+/* risco */
+.risco{background:var(--fundo-escuro);color:#fff;position:relative;overflow:hidden}
+.risco:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 8%,rgba(143,164,255,.2),transparent 50%);pointer-events:none}
+.risco .wrap{position:relative}
+.risco .olho{color:var(--marca-clara)}
+.risco .intro,.risco .nota{color:rgba(255,255,255,.76)}
+.risco-lista{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));gap:22px;margin-top:50px}
+.risco-lista div{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:28px 26px;transition:background .3s,transform .3s var(--ease)}
+.risco-lista div:hover{background:rgba(255,255,255,.1);transform:translateY(-3px)}
+.risco-lista .ic{color:var(--marca-clara);width:26px;height:26px;margin-bottom:16px}
+.risco-lista h3{margin-bottom:10px;font-size:1.1rem}
+.risco-lista p{color:rgba(255,255,255,.68);font-size:.94rem;margin:0}
+
+/* carrossel */
+.carro-topo{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-top:46px}
+.carro-nav{display:flex;gap:10px;flex:none}
+.seta{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--linha);background:var(--branco);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,background .2s,transform .2s var(--ease)}
+.seta:hover:not(:disabled){border-color:var(--ink);transform:translateY(-2px)}
+.seta:disabled{opacity:.3;cursor:default}
+.seta svg{width:20px;height:20px}
+.seta.esq svg{transform:rotate(180deg)}
+.carro{display:flex;gap:24px;margin-top:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:none;-ms-overflow-style:none}
+.carro::-webkit-scrollbar{display:none}
+.carro .tiro{flex:0 0 min(560px,82vw);scroll-snap-align:start}
+.pontos{display:flex;gap:7px;justify-content:center;margin-top:26px}
+.pontos i{width:7px;height:7px;border-radius:50%;background:rgba(15,17,21,.2);transition:width .3s var(--ease),background .3s}
+.pontos i.on{width:22px;border-radius:4px;background:var(--marca)}
+.tiro{margin:0}
+.tiro .janela{transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.tiro:hover .janela{transform:translateY(-5px);box-shadow:0 2px 6px rgba(15,17,21,.06),0 40px 80px -28px rgba(15,17,21,.45)}
+.tiro figcaption{margin-top:13px;font-size:.91rem;color:var(--suave)}
+.recorte{max-height:440px;overflow:hidden}
+.recorte.alto{max-height:620px}
+.recorte img{transition:transform 1.4s var(--ease)}
+.tiro:hover .recorte img{transform:scale(1.015)}
+
+/* vereadores */
+.vereadores{background:var(--branco)}
+.ver-grade{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:56px;align-items:start;margin-top:48px}
+.ver-lista{list-style:none;margin:0;padding:0}
+.ver-lista li{display:flex;gap:16px;padding:22px 0;border-bottom:1px solid var(--linha)}
+.ver-lista li:first-child{border-top:1px solid var(--linha)}
+.ver-lista .ic{color:var(--marca);margin-top:3px;width:24px;height:24px}
+.ver-lista h3{font-size:1.08rem;margin-bottom:6px}
+.ver-lista p{margin:0;font-size:.95rem;color:var(--suave)}
+.ver-foto figcaption{margin-top:13px;font-size:.88rem;color:var(--suave)}
+
+/* quem sou */
+.quem{background:var(--branco)}
+.quem-grade{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:60px;align-items:start}
+.quem .fala{font-family:"Sora",sans-serif;font-weight:700;letter-spacing:-.03em;font-size:clamp(1.45rem,2.7vw,2rem);line-height:1.22;margin:0 0 28px;max-width:22ch}
+.quem p{color:var(--suave);max-width:54ch}
+.assinatura{margin-top:26px;font-weight:600;color:var(--ink)}
+.assinatura span{display:block;font-weight:400;color:var(--suave);font-size:.92rem;margin-top:3px}
+.retrato{margin:0 0 28px;border-radius:var(--r);overflow:hidden;background:#EDEDEA;box-shadow:0 24px 56px -28px rgba(15,17,21,.55)}
+.retrato img{width:100%;aspect-ratio:1;object-fit:cover}
+.credenciais{border-top:1px solid var(--linha);margin:0;padding:0}
+.credenciais div{display:flex;gap:14px;padding:17px 0;border-bottom:1px solid var(--linha)}
+.credenciais .ic{color:var(--marca);margin-top:3px}
+.credenciais dt{font-size:.84rem;color:var(--suave)}
+.credenciais dd{margin:3px 0 0;font-weight:600;font-size:1rem}
+
+/* linha do tempo */
+.trilha{position:relative;margin-top:60px;padding-left:94px}
+.trilha:before{content:"";position:absolute;left:33px;top:14px;bottom:14px;width:2px;background:var(--linha)}
+.trilha-fill{position:absolute;left:33px;top:14px;width:2px;background:linear-gradient(var(--marca),var(--marca-clara));height:0;transition:height 1.1s var(--ease);box-shadow:0 0 14px rgba(31,59,224,.45)}
+.etapa{position:relative;padding:0 0 54px}
+.etapa:last-child{padding-bottom:0}
+.etapa-no{position:absolute;left:-94px;top:-4px;width:68px;height:68px;border-radius:50%;background:var(--bg);border:2px solid var(--linha);color:var(--suave);display:grid;place-items:center;transition:border-color .5s var(--ease),background .5s var(--ease),color .5s var(--ease),transform .5s var(--ease);z-index:2}
+.etapa-no .ic{width:27px;height:27px}
+.etapa.on .etapa-no{border-color:var(--marca);background:var(--marca);color:#fff;transform:scale(1.06)}
+.etapa-topo{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px;margin-bottom:12px}
+.etapa h3{font-size:clamp(1.35rem,2.6vw,1.9rem);letter-spacing:-.03em}
+.quando{font-size:.8rem;font-weight:600;color:var(--marca);background:rgba(31,59,224,.1);padding:5px 13px;border-radius:999px}
+.etapa>p{color:var(--suave);margin-bottom:20px;max-width:58ch}
+.itens{list-style:none;margin:0 0 22px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:9px 26px}
+.itens li{display:flex;gap:10px;font-size:.95rem;color:var(--suave);opacity:0;transform:translateX(-12px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.etapa.on .itens li{opacity:1;transform:none}
+.etapa.on .itens li:nth-child(2){transition-delay:.07s}
+.etapa.on .itens li:nth-child(3){transition-delay:.14s}
+.etapa.on .itens li:nth-child(4){transition-delay:.21s}
+.etapa.on .itens li:nth-child(5){transition-delay:.28s}
+.itens .tick{width:17px;height:17px;flex:none;margin-top:4px;border-radius:50%;background:rgba(31,59,224,.12);color:var(--marca);display:grid;place-items:center}
+.itens .tick svg{width:11px;height:11px;stroke-width:2.6}
+.entrega{display:inline-flex;align-items:center;gap:10px;border:1px dashed rgba(31,59,224,.45);background:rgba(31,59,224,.05);border-radius:12px;padding:11px 17px;font-size:.92rem}
+.entrega b{font-weight:600}
+.entrega .ic{width:18px;height:18px;color:var(--marca)}
+@media(max-width:700px){
+  .trilha{padding-left:60px}
+  .trilha:before,.trilha-fill{left:21px}
+  .etapa-no{left:-60px;width:44px;height:44px}
+  .etapa-no .ic{width:19px;height:19px}
+  .itens{grid-template-columns:1fr}
+}
+
+/* perguntas */
+.perguntas{margin-top:48px;border-top:1px solid var(--linha)}
+.perguntas details{border-bottom:1px solid var(--linha)}
+.perguntas summary{cursor:pointer;list-style:none;padding:23px 46px 23px 0;position:relative;font-family:"Sora",sans-serif;font-weight:700;letter-spacing:-.02em;font-size:1.08rem;transition:color .2s}
+.perguntas summary:hover{color:var(--marca)}
+.perguntas summary::-webkit-details-marker{display:none}
+.perguntas summary:after{content:"";position:absolute;right:10px;top:50%;width:13px;height:13px;margin-top:-6px;background:
+  linear-gradient(currentColor,currentColor) center/13px 1.6px no-repeat,
+  linear-gradient(currentColor,currentColor) center/1.6px 13px no-repeat;
+  color:var(--marca);transition:transform .3s var(--ease)}
+.perguntas details[open] summary:after{transform:rotate(135deg)}
+.perguntas .resp{padding:0 0 26px;margin:0;color:var(--suave);max-width:72ch}
+
+/* referência */
+.ref{display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between;border-radius:var(--r);border:1px solid var(--linha);background:var(--branco);padding:36px 32px;margin-top:44px}
+.ref h3{margin-bottom:8px}
+.ref p{margin:0;color:var(--suave);font-size:.96rem;max-width:46ch}
+.ref a.lnk{display:inline-flex;align-items:center;gap:7px;color:var(--marca);font-weight:600;text-decoration:none;padding:4px 0}
+.ref a.lnk:hover{text-decoration:underline}
+
+/* chamada final */
+.final{background:var(--ink);color:#F6F6F3;text-align:center;position:relative;overflow:hidden}
+.final:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(31,59,224,.4),transparent 58%);pointer-events:none}
+.final .wrap{position:relative}
+.final h2{max-width:20ch;margin:0 auto 24px}
+.final p{color:rgba(246,246,243,.66);max-width:56ch;margin:0 auto 38px;font-size:1.08rem}
+.final .acoes{justify-content:center}
+.final .btn2{border-color:rgba(246,246,243,.3);color:#F6F6F3}
+.final .btn2:hover{border-color:#F6F6F3;background:rgba(246,246,243,.1)}
+.final .zap{padding:15px 30px;font-size:1rem}
+
+footer{background:var(--ink);color:rgba(246,246,243,.4);font-size:.82rem}
+footer .wrap{padding:32px 28px 52px;border-top:1px solid rgba(246,246,243,.14);display:flex;flex-wrap:wrap;gap:14px 40px}
+footer p{margin:0;max-width:62ch}
+footer a{color:rgba(246,246,243,.68)}
+
+@media(max-width:860px){
+  section{padding:70px 0}
+  .heroi{padding-top:50px}
+  .duo,.quem-grade,.ver-grade{grid-template-columns:1fr}
+  .ver-grade{gap:36px}
+  .quem-grade{gap:38px}
+  .heroi-arte{margin-top:44px}
+  .heroi-arte .janela,.pronto .heroi-arte .janela{transform:none}
+  .recorte{max-height:300px}
+  .recorte.alto{max-height:380px}
+}
+@media(max-width:1040px){
+  .rk{grid-template-columns:24px minmax(0,1fr) 64px;gap:10px;font-size:.88rem;padding-right:4px}
+  .rk .niv{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .sobe,.fade-tardio{opacity:1;transform:none;transition:none}
+  .linha-mask>span{transform:none;transition:none}
+  .pulso:after,.aurora i,.cartaz,.ticker-fita{animation:none}
+  .heroi h1 span.p>span{transform:none;transition:none}
+  .cartaz{opacity:1;transform:none}
+  .rk .barra i{transition:none}
+  .etapa .itens li{opacity:1;transform:none}
+  .trilha-fill{transition:none}
+  .tiro:hover .janela,.risco-lista div:hover,.btn2:hover,.zap:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<i class="progresso" id="progresso" aria-hidden="true"></i>
+
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <symbol id="i-lupa" viewBox="0 0 24 24"><path d="M5 3h9l4 4v6"/><path d="M5 3v18h6"/><circle cx="16.5" cy="17.5" r="3.5"/><path d="M19.2 20.2 22 23"/><path d="M8 8h5M8 12h3"/></symbol>
+    <symbol id="i-doccheck" viewBox="0 0 24 24"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5"/><path d="m9.5 13.5 2 2 4-4"/></symbol>
+    <symbol id="i-ciclo" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.7-6.4"/><path d="M21 4v5h-5"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-bloqueio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6 18.4 18.4"/></symbol>
+    <symbol id="i-multa" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><circle cx="12" cy="16.5" r=".6" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-balanca" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10"/><path d="M4 7h16"/><path d="m4 7-2.5 6a3 3 0 0 0 5 0z"/><path d="m20 7-2.5 6a3 3 0 0 0 5 0z"/></symbol>
+    <symbol id="i-olho" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+    <symbol id="i-premio" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"/></symbol>
+    <symbol id="i-livro" viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v16H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v4H6.5A2.5 2.5 0 0 1 4 19.5z"/></symbol>
+    <symbol id="i-nota" viewBox="0 0 24 24"><path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol>
+    <symbol id="i-grafico" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M6 17v-5M11 17V6M16 17v-8M21 17v-3"/></symbol>
+    <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 2 4 5.5V11c0 5 3.4 9.6 8 11 4.6-1.4 8-6 8-11V5.5z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></symbol>
+    <symbol id="i-pergunta" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.3 9.2a2.8 2.8 0 1 1 3.4 3.4c-.5.2-.7.7-.7 1.2v.4"/><circle cx="12" cy="17" r=".6" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-janelas" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M2.5 8.5h19"/><circle cx="6" cy="6.2" r=".55" fill="currentColor" stroke="none"/><path d="M7 12.5h6M7 16h10"/></symbol>
+    <symbol id="i-tick" viewBox="0 0 24 24"><path d="m4 12.5 5.5 5.5L20 6.5"/></symbol>
+    <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></symbol>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#topo">Stephen Barreto</a>
+    <div class="menu">
+      <a href="#resultado">Resultado</a>
+      <a href="#regiao">A região</a>
+      <a href="#portal">O portal</a>
+      <a href="#vereadores">Vereadores</a>
+      <a href="#quem">Quem sou</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a class="zap" href="https://wa.me/5538999259308?text=Ol%C3%A1%2C%20Stephen.%20Sou%20da%20C%C3%A2mara%20Municipal%20de%20____%20e%20quero%20falar%20sobre%20transpar%C3%AAncia." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.87 11.87 0 01-1.6-5.95C.16 5.33 5.5 0 12.06 0a11.8 11.8 0 018.4 3.49 11.78 11.78 0 013.48 8.4c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 01-5.7-1.45L.06 24zm6.6-3.8c1.68 1 3.28 1.6 5.4 1.6 5.45 0 9.9-4.43 9.9-9.9 0-5.46-4.43-9.9-9.9-9.9-5.47 0-9.9 4.44-9.9 9.9 0 2.22.65 3.88 1.74 5.62l-.99 3.6 3.75-.92z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</nav>
+
+<header class="heroi" id="topo">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <span class="selo fade-tardio"><i class="pulso"></i>PNTP 2026 · Nível Prata · Avaliação do TCE-MG</span>
+    <h1 class="disp" id="titulo">Portais públicos que passam na prova do Tribunal de Contas.</h1>
+    <p class="sub fade-tardio">Construo e mantenho o portal da sua Câmara, organizo o acervo de documentos e acompanho cada critério de transparência até ele ser atendido.</p>
+    <div class="marcos fade-tardio">
+      <span class="marco-chip"><b data-conta="80,11" data-fim="80.11" data-dec="2" data-suf="%">0%</b> índice no PNTP 2026</span>
+      <span class="marco-chip"><b data-conta="100" data-fim="100" data-dec="0" data-suf="%">0%</b> dos critérios essenciais</span>
+      <span class="marco-chip"><b>Única</b> da região com selo</span>
+    </div>
+    <div class="acoes fade-tardio">
+      <a class="zap" href="https://wa.me/5538999259308?text=Ol%C3%A1%2C%20Stephen.%20Sou%20da%20C%C3%A2mara%20Municipal%20de%20____%20e%20quero%20o%20diagn%C3%B3stico%20de%20conformidade%20do%20PNTP." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.87 11.87 0 01-1.6-5.95C.16 5.33 5.5 0 12.06 0a11.8 11.8 0 018.4 3.49 11.78 11.78 0 013.48 8.4c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 01-5.7-1.45L.06 24zm6.6-3.8c1.68 1 3.28 1.6 5.4 1.6 5.45 0 9.9-4.43 9.9-9.9 0-5.46-4.43-9.9-9.9-9.9-5.47 0-9.9 4.44-9.9 9.9 0 2.22.65 3.88 1.74 5.62l-.99 3.6 3.75-.92z"/></svg>
+        Pedir um diagnóstico
+      </a>
+      <a class="btn2" href="#regiao">Ver a região inteira<svg class="ic" style="width:17px;height:17px"><use href="#i-seta"/></svg></a>
+    </div>
+  </div>
+  <div class="heroi-arte">
+    <div class="janela">
+      <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">camaradecurraldedentro.mg.gov.br</span></div>
+      <img src="img/home-topo.jpg" alt="Página inicial do portal da Câmara Municipal de Curral de Dentro, com acesso rápido a atas, leis, licitações, vereadores, SIC, ouvidoria e participação cidadã." width="1400" height="867">
+    </div>
+    <div class="flutuantes" aria-hidden="true">
+      <span class="cartaz a"><svg class="ic"><use href="#i-escudo"/></svg>100% dos essenciais</span>
+      <span class="cartaz b"><svg class="ic"><use href="#i-premio"/></svg>Nível Prata 2026</span>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-fita" id="fita"></div></div>
+
+<div class="faixa" id="resultado">
+  <div class="wrap">
+    <div class="faixa-grade sobe">
+      <div><b data-conta="80,11" data-fim="80.11" data-dec="2" data-suf="%">0%</b><span>índice no PNTP 2026, contra 63,67% no ciclo anterior</span></div>
+      <div><b data-conta="100" data-fim="100" data-dec="0" data-suf="%">0%</b><span>dos critérios essenciais atendidos</span></div>
+      <div><b>Prata</b><span>nível de selo conquistado na avaliação do TCE-MG</span></div>
+      <div><b data-conta="1" data-fim="1" data-dec="0" data-suf="ª">0ª</b><span>e única câmara da região com selo, entre 25 avaliadas</span></div>
+    </div>
+    <p class="fonte">Dados do ciclo 2026 publicados no <a href="https://radardatransparencia.atricon.org.br/painel-6/#e=7083" target="_blank" rel="noopener">Radar da Transparência Pública</a>, da Atricon. Certificado a ser entregue pelo TCE-MG em cerimônia prevista para fevereiro de 2027.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sobe">
+      <p class="olho"><svg class="ic"><use href="#i-grafico"/></svg>O caso</p>
+      <h2 class="disp">Um ciclo para sair de reprovada a certificada.</h2>
+      <p class="intro">Em 2025 a Câmara de Curral de Dentro ficou no nível Intermediário, sem selo. Em 2026, com o portal reconstruído e o acervo documental organizado, passou em todos os critérios essenciais.</p>
+    </div>
+    <div class="duo sobe">
+      <div class="cartao">
+        <span class="ano">Ciclo 2025</span>
+        <div class="big">63,67%</div>
+        <ul>
+          <li><span>Nível</span><span>Intermediário — sem selo</span></li>
+          <li><span>Critérios essenciais</span><span>85,71%</span></li>
+        </ul>
+      </div>
+      <div class="cartao depois">
+        <span class="ano">Ciclo 2026</span>
+        <div class="big">80,11%</div>
+        <ul>
+          <li><span>Nível</span><span>Prata — com selo</span></li>
+          <li><span>Critérios essenciais</span><span>100%</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ranking" id="regiao">
+  <div class="wrap">
+    <div class="sobe">
+      <p class="olho"><svg class="ic"><use href="#i-pin"/></svg>A região, ciclo 2026</p>
+      <h2 class="disp">Nota alta não garante selo. Critério essencial, sim.</h2>
+      <p class="intro">As 25 câmaras da região avaliadas no PNTP 2026, na ordem oficial do programa: primeiro o nível alcançado, depois a nota dentro de cada nível. Por isso Curral de Dentro aparece à frente de duas câmaras que tiraram nota maior — elas falharam em critério essencial e não receberam selo.</p>
+    </div>
+    <div class="tabela sobe" id="tabela"></div>
+    <div class="leitura sobe">
+      <div><h3>Berizal, 95,76%</h3><p>A maior nota da região. Falhou em critério essencial e ficou no nível Elevado, sem selo.</p></div>
+      <div><h3>Salinas, 72,75%</h3><p>Atendeu 100% dos essenciais, mas a nota geral não alcançou a faixa do selo.</p></div>
+      <div><h3>Curral de Dentro, 80,11%</h3><p>A única da região com as duas coisas ao mesmo tempo: nota na faixa e todos os essenciais.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="risco">
+  <div class="wrap">
+    <div class="sobe">
+      <p class="olho"><svg class="ic"><use href="#i-escudo"/></svg>O que está em jogo</p>
+      <h2 class="disp">Uma nota ruim não fica só no painel.</h2>
+      <p class="intro">Transparência não é cortesia com o cidadão: é obrigação legal, com prazo e com sanção. O Tribunal de Contas avalia a Câmara critério por critério, exige evidência e publica o resultado. Quem responde pelo descumprimento é quem assina.</p>
+    </div>
+    <div class="risco-lista sobe">
+      <div>
+        <svg class="ic"><use href="#i-bloqueio"/></svg>
+        <h3>Convênios e emendas travados</h3>
+        <p>O ente que descumpre as exigências de transparência da Lei de Responsabilidade Fiscal fica impedido de receber transferências voluntárias. Convênio em andamento para e emenda parlamentar não entra. Escapam apenas os repasses de educação, saúde e assistência social.</p>
+      </div>
+      <div>
+        <svg class="ic"><use href="#i-multa"/></svg>
+        <h3>Multa paga do próprio bolso</h3>
+        <p>O Tribunal de Contas aplica multa ao agente público responsável pelo descumprimento. Não é a Câmara que paga: é a pessoa que responde pelo ato, com recurso próprio.</p>
+      </div>
+      <div>
+        <svg class="ic"><use href="#i-balanca"/></svg>
+        <h3>Contas rejeitadas</h3>
+        <p>Falhas de publicidade ativa entram no exame das contas anuais. Contas rejeitadas por irregularidade insanável podem levar a ação por improbidade e, nos casos mais graves, à inelegibilidade do responsável.</p>
+      </div>
+      <div>
+        <svg class="ic"><use href="#i-olho"/></svg>
+        <h3>Exposição permanente</h3>
+        <p>O índice de cada câmara fica publicado no Radar, aberto a qualquer cidadão, jornalista, promotor ou adversário político — e lado a lado com o das cidades vizinhas.</p>
+      </div>
+    </div>
+    <p class="nota" style="color:rgba(255,255,255,.52)">Base legal: Lei Complementar nº 101/2000 (arts. 48, 48-A e 73-C), Lei nº 12.527/2011, Lei nº 8.429/1992 e Lei Complementar nº 64/1990. A aplicação de cada sanção depende do caso concreto e da decisão do órgão competente.</p>
+  </div>
+</section>
+
+<section id="portal">
+  <div class="wrap">
+    <div class="sobe">
+      <p class="olho"><svg class="ic"><use href="#i-janelas"/></svg>O portal</p>
+      <h2 class="disp">Qualquer documento em até três cliques.</h2>
+      <p class="intro">Acessível, leve e construído em torno do que o cidadão realmente procura — e do que o avaliador vai conferir. De quebra, cada vereador ganha o registro público do próprio trabalho: proposições com nome e data, votação nominal, presença e vídeo da sessão.</p>
+    </div>
+    <div class="carro-topo sobe">
+      <p style="margin:0;color:var(--suave);font-size:.94rem">Arraste para o lado para ver mais telas.</p>
+      <div class="carro-nav">
+        <button class="seta esq" id="setaEsq" aria-label="Tela anterior"><svg class="ic"><use href="#i-seta"/></svg></button>
+        <button class="seta dir" id="setaDir" aria-label="Próxima tela"><svg class="ic"><use href="#i-seta"/></svg></button>
+      </div>
+    </div>
+    <div class="carro sobe" id="carro" tabindex="0" aria-label="Telas do portal">
+      <figure class="tiro">
+        <div class="janela">
+          <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">camaradecurraldedentro.mg.gov.br/atas-das-sessoes</span></div>
+          <div class="recorte"><img src="img/atas.jpg" alt="Página de atas das sessões, com tabela de sessenta reuniões listando pauta, ata, lista de presença, votação nominal e vídeo de cada uma." loading="lazy" width="1200" height="1501"></div>
+        </div>
+        <figcaption>Sessões — pauta, ata, presença, votação nominal e vídeo de cada reunião, com busca e exportação em CSV.</figcaption>
+      </figure>
+      <figure class="tiro">
+        <div class="janela">
+          <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">/legislacao</span></div>
+          <div class="recorte"><img src="img/legislacao.jpg" alt="Página de legislação municipal com leis ordinárias, complementares, decretos, resoluções, portarias e projetos de lei, com filtro por ano, número e palavra-chave." loading="lazy" width="1200" height="1306"></div>
+        </div>
+        <figcaption>Legislação — série histórica desde 1995, com busca por palavra-chave e exportação em CSV.</figcaption>
+      </figure>
+      <figure class="tiro">
+        <div class="janela">
+          <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">/votacoes-nominais</span></div>
+          <div class="recorte"><img src="img/votacoes.jpg" alt="Página de votações nominais, com a ementa de cada matéria, o resultado da votação e o detalhe de como cada vereador votou." loading="lazy" width="1200" height="844"></div>
+        </div>
+        <figcaption>Votações nominais — como cada vereador votou em cada matéria, com o documento anexado.</figcaption>
+      </figure>
+      <figure class="tiro">
+        <div class="janela">
+          <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">/lista-de-presenca</span></div>
+          <div class="recorte"><img src="img/presenca.jpg" alt="Página de lista de presença, com as sessões listadas por número, tipo e data e a presença de cada reunião." loading="lazy" width="1200" height="524"></div>
+        </div>
+        <figcaption>Lista de presença — quem esteve em cada reunião, de 2024 até hoje.</figcaption>
+      </figure>
+      <figure class="tiro">
+        <div class="janela">
+          <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">/atendimento/esic</span></div>
+          <div class="recorte"><img src="img/sic.jpg" alt="Página do Serviço de Informação ao Cidadão com formulário de pedido eletrônico e prazo de resposta." loading="lazy" width="1200" height="1458"></div>
+        </div>
+        <figcaption>SIC — pedido eletrônico com protocolo, código de acesso e acompanhamento da resposta.</figcaption>
+      </figure>
+      <figure class="tiro">
+        <div class="janela">
+          <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">/atendimento/ouvidoria</span></div>
+          <div class="recorte"><img src="img/ouvidoria.jpg" alt="Página da Ouvidoria com formulário de manifestação e opção de envio anônimo." loading="lazy" width="1200" height="1370"></div>
+        </div>
+        <figcaption>Ouvidoria — manifestação anônima aceita, com protocolo e resposta consultável no site.</figcaption>
+      </figure>
+      <figure class="tiro">
+        <div class="janela">
+          <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">/participacao-cidada</span></div>
+          <div class="recorte"><img src="img/participacao.jpg" alt="Página de participação cidadã com consultas públicas abertas sobre projetos de lei e percentuais de voto." loading="lazy" width="1200" height="1198"></div>
+        </div>
+        <figcaption>Participação cidadã — consulta pública sobre projetos de lei, sem cadastro, em um clique.</figcaption>
+      </figure>
+      <figure class="tiro">
+        <div class="janela">
+          <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">/propostas</span></div>
+          <div class="recorte"><img src="img/propostas.jpg" alt="Página de ofícios, indicações e requerimentos dos vereadores, organizada em tabela com situação de cada documento." loading="lazy" width="897" height="2396"></div>
+        </div>
+        <figcaption>Ofícios, indicações e requerimentos — o trabalho de cada vereador, público e rastreável.</figcaption>
+      </figure>
+    </div>
+    <div class="pontos" id="pontos" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="vereadores" id="vereadores">
+  <div class="wrap">
+    <div class="sobe">
+      <p class="olho"><svg class="ic"><use href="#i-premio"/></svg>Para os vereadores</p>
+      <h2 class="disp">O portal também trabalha para quem foi eleito.</h2>
+      <p class="intro">Transparência costuma ser vendida como obrigação do Presidente. Mas o portal bem feito é, para cada vereador, o registro público e permanente do próprio mandato — pesquisável pelo eleitor, a qualquer hora.</p>
+    </div>
+    <div class="ver-grade sobe">
+      <ul class="ver-lista">
+        <li><svg class="ic"><use href="#i-premio"/></svg><div><h3>Página própria</h3><p>Foto, partido, mandato, biografia, comissões e contato — e o botão que reúne todos os ofícios e indicações dele.</p></div></li>
+        <li><svg class="ic"><use href="#i-doccheck"/></svg><div><h3>Proposição com nome e data</h3><p>Cada ofício, indicação e requerimento publicado com autor e situação. O eleitor pesquisa e encontra o que o vereador pediu.</p></div></li>
+        <li><svg class="ic"><use href="#i-balanca"/></svg><div><h3>Voto registrado</h3><p>Votação nominal publicada matéria por matéria. Fim do boato sobre quem votou o quê: está escrito, com o documento anexo.</p></div></li>
+        <li><svg class="ic"><use href="#i-ciclo"/></svg><div><h3>Presença comprovada</h3><p>Lista de presença de cada reunião, aberta a qualquer pessoa, com o vídeo da sessão ao lado.</p></div></li>
+      </ul>
+      <figure class="ver-foto">
+        <div class="janela">
+          <div class="janela-barra"><i class="bolha"></i><i class="bolha"></i><i class="bolha"></i><span class="janela-url">/vereadores</span></div>
+          <img src="img/vereadores.jpg" alt="Seção de vereadores do portal, com foto, nome, cargo e partido dos nove parlamentares do mandato 2025–2028." loading="lazy" width="1200" height="481">
+        </div>
+        <figcaption>Critério 20.1 do PNTP: foto, cargo, partido, biografia, comissões e contato de cada vereador.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="quem" id="quem">
+  <div class="wrap">
+    <div class="sobe">
+      <p class="olho"><svg class="ic"><use href="#i-pin"/></svg>Quem faz o trabalho</p>
+      <h2 class="disp">Não é uma empresa de software. Sou eu.</h2>
+    </div>
+    <div class="quem-grade sobe" style="margin-top:44px">
+      <div>
+        <p class="fala">Quem atende a sua Câmara é quem construiu o portal de Curral de Dentro, do zero.</p>
+        <p>Sou Stephen Barreto, moro em Curral de Dentro e respondo tecnicamente pelo portal da Câmara daqui desde 2025. Reconstruí o site inteiro, organizei o acervo de documentos e acompanhei a avaliação do TCE-MG critério por critério até a Câmara alcançar o nível Prata.</p>
+        <p>As empresas que vendem portal para câmaras entregam um sistema e seguem adiante. O que falta, quase sempre, não é sistema — é alguém conferindo documento por documento e correndo atrás do que ainda não foi produzido. É esse trabalho que eu faço, e faço pessoalmente: vou até a Câmara, sento com os setores e deixo a rotina montada.</p>
+        <p>Prefiro responder no WhatsApp em minutos a ter uma carteira grande e um canal de chamados.</p>
+        <div class="assinatura">Stephen Dias Barreto<span>Curral de Dentro — Minas Gerais</span></div>
+      </div>
+      <div>
+        <figure class="retrato"><img src="img/retrato.jpg" alt="Retrato de Stephen Dias Barreto" width="760" height="760" loading="lazy"></figure>
+        <dl class="credenciais">
+          <div><svg class="ic"><use href="#i-pin"/></svg><div><dt>Atendimento</dt><dd>Presencial e contínuo, na sede da Câmara</dd></div></div>
+          <div><svg class="ic"><use href="#i-premio"/></svg><div><dt>Experiência comprovável</dt><dd>Portal da Câmara de Curral de Dentro, nível Prata no PNTP 2026</dd></div></div>
+          <div><svg class="ic"><use href="#i-livro"/></svg><div><dt>Formação</dt><dd>Graduando em Sistemas de Informação</dd></div></div>
+          <div><svg class="ic"><use href="#i-nota"/></svg><div><dt>Contratação</dt><dd>CNPJ próprio, com emissão de nota fiscal</dd></div></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servico">
+  <div class="wrap">
+    <div class="sobe">
+      <p class="olho"><svg class="ic"><use href="#i-ciclo"/></svg>Como funciona</p>
+      <h2 class="disp">Do diagnóstico ao critério atendido.</h2>
+      <p class="intro">O portal é onde o documento aparece. O trabalho é garantir que ele exista, esteja correto e chegue lá dentro do prazo legal.</p>
+    </div>
+    <div class="trilha" id="trilha">
+      <i class="trilha-fill" id="trilhaFill"></i>
+
+      <div class="etapa">
+        <span class="etapa-no"><svg class="ic"><use href="#i-lupa"/></svg></span>
+        <div class="etapa-topo"><h3 class="disp">Diagnóstico</h3><span class="quando">Primeiros dias</span></div>
+        <p>Antes de mexer em qualquer coisa, saber exatamente onde a Câmara está. Abro a matriz do ciclo e confiro item por item contra o que está publicado hoje.</p>
+        <ul class="itens">
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Cada critério classificado: atendido, parcial ou não atendido</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Documento que existe mas não foi publicado</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Documento que ainda nem foi produzido</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Prazo legal e setor responsável por item</li>
+        </ul>
+        <span class="entrega"><svg class="ic"><use href="#i-nota"/></svg><b>Entrega:</b> relatório de conformidade, critério por critério</span>
+      </div>
+
+      <div class="etapa">
+        <span class="etapa-no"><svg class="ic"><use href="#i-doccheck"/></svg></span>
+        <div class="etapa-topo"><h3 class="disp">Adequação</h3><span class="quando">Primeiros meses</span></div>
+        <p>A lista do diagnóstico vira trabalho. O portal é construído ou corrigido e o acervo atrasado entra no ar, conferido.</p>
+        <ul class="itens">
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Portal com as páginas que cada critério exige</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Digitalização e OCR do acervo em papel</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Classificação por exercício, processo e tipo</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Conferência antes de publicar: período, anexos, assinatura</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Acessibilidade, LGPD, SIC, Ouvidoria e e-mail institucional</li>
+        </ul>
+        <span class="entrega"><svg class="ic"><use href="#i-escudo"/></svg><b>Entrega:</b> portal em conformidade e acervo publicado</span>
+      </div>
+
+      <div class="etapa">
+        <span class="etapa-no"><svg class="ic"><use href="#i-ciclo"/></svg></span>
+        <div class="etapa-topo"><h3 class="disp">Acompanhamento</h3><span class="quando">Todo mês, sem parar</span></div>
+        <p>Critério atendido que desatualiza volta a reprovar. A partir daqui o serviço é rotina: cada obrigação tem prazo, e alguém precisa estar olhando.</p>
+        <ul class="itens">
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Pauta antes da sessão; ata, presença e votação depois</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Folha, diárias, contratos e aditivos todo mês</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>RREO, RGF, PPA, LDO, LOA e prestação de contas</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Pendências solicitadas aos setores, com registro</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Diretoria avisada antes do prazo vencer, não depois</li>
+        </ul>
+        <span class="entrega"><svg class="ic"><use href="#i-grafico"/></svg><b>Entrega:</b> relatório mensal de atividades e pendências</span>
+      </div>
+
+      <div class="etapa">
+        <span class="etapa-no"><svg class="ic"><use href="#i-premio"/></svg></span>
+        <div class="etapa-topo"><h3 class="disp">Avaliação</h3><span class="quando">A cada ciclo</span></div>
+        <p>Chega o período de avaliação do Tribunal. É quando o trabalho do ano aparece — e quando as exigências do avaliador precisam de resposta rápida.</p>
+        <ul class="itens">
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Autoavaliação preenchida com a evidência de cada critério</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Diligências do TCE-MG acompanhadas junto com a Administração</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Correções feitas ainda dentro do prazo da avaliação</li>
+          <li><i class="tick"><svg class="ic"><use href="#i-tick"/></svg></i>Resultado conferido contra a matriz quando sai</li>
+        </ul>
+        <span class="entrega"><svg class="ic"><use href="#i-pin"/></svg><b>Entrega:</b> resultado publicado no Radar da Transparência</span>
+      </div>
+    </div>
+    <p class="nota">A atuação é técnica e operacional. A produção, a assinatura e a autorização de publicação continuam com os servidores e agentes públicos competentes. Não substitui assessoria jurídica, contabilidade, controle interno nem fiscal de contrato.</p>
+    <div class="ref sobe">
+      <div>
+        <h3>Câmara Municipal de Curral de Dentro — MG</h3>
+        <p>A Câmara autorizou a citação como referência e pode ser procurada diretamente pelo telefone (38) 3845-9107.</p>
+      </div>
+      <div>
+        <a class="lnk" href="https://radardatransparencia.atricon.org.br/painel-6/#e=7083" target="_blank" rel="noopener">Ver a ficha no Radar<svg class="ic" style="width:16px;height:16px"><use href="#i-seta"/></svg></a><br>
+        <a class="lnk" href="https://camaradecurraldedentro.mg.gov.br/" target="_blank" rel="noopener">Visitar o portal<svg class="ic" style="width:16px;height:16px"><use href="#i-seta"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sobe">
+      <p class="olho"><svg class="ic"><use href="#i-pergunta"/></svg>Dúvidas frequentes</p>
+      <h2 class="disp">O que as câmaras costumam perguntar.</h2>
+    </div>
+    <div class="perguntas sobe">
+      <details>
+        <summary>Já temos portal contratado de outra empresa. Serve?</summary>
+        <p class="resp">Serve. Trabalho com a plataforma que a Câmara já tem e faço a interlocução técnica com o fornecedor dela. Ter sistema contratado não significa estar em conformidade: há câmaras na região com portal completo e índice abaixo de 35%, porque o que falta é documento conferido e publicado no prazo, não tela.</p>
+      </details>
+      <details>
+        <summary>O que são transferências voluntárias, na prática?</summary>
+        <p class="resp">São os repasses de dinheiro que a União ou o Estado mandam ao município por vontade própria, fora do que já é obrigatório por lei — ou seja, fora do FPM e dos fundos constitucionais. É o dinheiro de convênio e de emenda parlamentar: a reforma da escola, a ambulância, o calçamento da rua, a quadra, o poço artesiano. Quando o município entra na lista de inadimplentes em transparência, esse dinheiro fica bloqueado até a situação ser regularizada. Só continuam entrando os repasses de educação, saúde e assistência social.</p>
+      </details>
+      <details>
+        <summary>E o convênio que já está em andamento?</summary>
+        <p class="resp">Convênio é o acordo assinado entre o município e o órgão que vai repassar o recurso, com um objetivo definido e prestação de contas. Emenda parlamentar é a verba que um deputado ou senador direciona para o município no orçamento. Os dois dependem de o município estar regular para que as parcelas sejam liberadas. Um convênio já assinado pode ter a liberação das parcelas seguintes suspensa, e a obra fica parada no meio — não porque faltou dinheiro, mas porque faltou documento publicado.</p>
+      </details>
+      <details>
+        <summary>Quem é "a pessoa que responde pelo ato"?</summary>
+        <p class="resp">Na Câmara, em regra é o Presidente: ele é o chefe do Poder Legislativo municipal e o ordenador de despesa, quem assina e responde pela gestão da Casa. Dependendo do caso, a responsabilidade pode alcançar também o servidor formalmente designado para a função — por exemplo, quem foi nomeado responsável pelo Serviço de Informação ao Cidadão ou pelo portal. A multa aplicada pelo Tribunal é pessoal: sai do bolso de quem responde, não do orçamento da Câmara.</p>
+      </details>
+      <details>
+        <summary>Como a Câmara faz para contratar?</summary>
+        <p class="resp">Pela forma que for mais simples para a Administração. Na maioria dos casos cabe em dispensa de licitação pelo valor, dentro do limite da Lei 14.133. Entrego à assessoria de licitações o memorial descritivo dos serviços, para que ela redija o termo de referência do jeito que a Casa precisa.</p>
+      </details>
+      <details>
+        <summary>Em quanto tempo a nota melhora?</summary>
+        <p class="resp">O diagnóstico fica pronto em poucos dias. A adequação depende do tamanho do acervo atrasado e da velocidade com que os setores entregam os documentos. A nota só muda no ciclo seguinte de avaliação, que é anual — por isso começar cedo no ciclo faz diferença.</p>
+      </details>
+      <details>
+        <summary>Quem produz os documentos?</summary>
+        <p class="resp">Os setores da Câmara e os prestadores dela, como a assessoria contábil. Eu identifico o que falta, solicito formalmente, acompanho, confiro o conteúdo e publico. A cobrança formal, quando necessária, é ato da Administração — meu papel é dar à Diretoria a informação com tempo hábil para agir.</p>
+      </details>
+      <details>
+        <summary>E quando o avaliador do Tribunal faz exigências?</summary>
+        <p class="resp">Acompanho a diligência junto com a Administração durante todo o período de avaliação, organizo as providências e registro cada contato. Atuo como suporte técnico: não represento a Câmara juridicamente nem assino documento oficial.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="contato">
+  <div class="wrap">
+    <h2 class="disp sobe">Comece sabendo onde sua Câmara está hoje.</h2>
+    <p class="sobe">O diagnóstico mostra, critério por critério, o que falta para a sua Câmara — com prazo e responsável. É o mesmo levantamento que deu origem ao resultado de Curral de Dentro.</p>
+    <div class="acoes sobe">
+      <a class="zap" href="https://wa.me/5538999259308?text=Ol%C3%A1%2C%20Stephen.%20Sou%20da%20C%C3%A2mara%20Municipal%20de%20____%20e%20quero%20o%20diagn%C3%B3stico%20de%20conformidade%20do%20PNTP." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.69-6.16a11.87 11.87 0 01-1.6-5.95C.16 5.33 5.5 0 12.06 0a11.8 11.8 0 018.4 3.49 11.78 11.78 0 013.48 8.4c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 01-5.7-1.45L.06 24zm6.6-3.8c1.68 1 3.28 1.6 5.4 1.6 5.45 0 9.9-4.43 9.9-9.9 0-5.46-4.43-9.9-9.9-9.9-5.47 0-9.9 4.44-9.9 9.9 0 2.22.65 3.88 1.74 5.62l-.99 3.6 3.75-.92z"/></svg>
+        Pedir um diagnóstico
+      </a>
+      <a class="btn2" href="tel:+5538999259308">(38) 99925-9308</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Stephen Dias Barreto — Curral de Dentro, Minas Gerais</p>
+    <p>Dados do ciclo 2026 conforme o <a href="https://radardatransparencia.atricon.org.br/painel-6/#e=7083" target="_blank" rel="noopener">Radar da Transparência Pública</a> (Atricon/IRB), consulta de novembro de 2026. Imagens do portal da Câmara Municipal de Curral de Dentro, reproduzidas com autorização.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ranking da região */
+  var dados=[
+    ["Curral de Dentro",80.11,"Prata",1],
+    ["Berizal",95.76,"Elevado",0],["São João do Paraíso",92.54,"Elevado",0],
+    ["Salinas",72.75,"Intermediário",0],
+    ["Comercinho",69.42,"Intermediário",0],["Taiobeiras",60.53,"Intermediário",0],
+    ["Rubelita",56.38,"Intermediário",0],["Padre Carvalho",51.04,"Intermediário",0],
+    ["José Gonçalves de Minas",50.09,"Intermediário",0],["Rio Pardo de Minas",48.45,"Básico",0],
+    ["Divisa Alegre",42.70,"Básico",0],["Indaiabira",41.63,"Básico",0],
+    ["Santo Antônio do Retiro",40.16,"Básico",0],["Medina",39.80,"Básico",0],
+    ["Novorizonte",39.04,"Básico",0],["Pedra Azul",37.21,"Básico",0],
+    ["Fruta de Leite",37.06,"Básico",0],["Montezuma",35.88,"Básico",0],
+    ["Jequitinhonha",34.01,"Básico",0],["Vargem Grande do Rio Pardo",32.18,"Básico",0],
+    ["Cachoeira de Pajeú",31.99,"Básico",0],["Josenópolis",31.83,"Básico",0],
+    ["Santa Cruz de Salinas",30.22,"Básico",0],["Águas Vermelhas",28.15,"Inicial",0],
+    ["Ninheira",27.20,"Inicial",0]
+  ];
+  var alvo=document.getElementById('tabela'), html='';
+  dados.forEach(function(d,i){
+    var cls = d[3] ? 'rk topo' : (d[1]>80.11 ? 'rk foco' : 'rk');
+    var tag = d[3] ? '<span class="etiq selo">COM SELO</span>'
+                   : (d[1]>80.11 ? '<span class="etiq sem">SEM SELO</span>' : '');
+    html += '<div class="'+cls+'">'
+      + '<span class="pos">'+(i+1)+'</span>'
+      + '<span class="cid"><b>'+d[0]+tag+'</b><span class="barra"><i style="--w:'+d[1].toFixed(2)+'%"></i></span></span>'
+      + '<span class="idx">'+d[1].toFixed(2).replace('.',',')+'%</span>'
+      + '<span class="niv">'+d[2]+'</span>'
+      + '</div>';
+  });
+  alvo.innerHTML=html;
+
+  /* progresso de rolagem */
+  var pg=document.getElementById('progresso');
+  var nav=document.getElementById('nav');
+  function aoRolar(){
+    var alt=document.documentElement.scrollHeight-window.innerHeight;
+    pg.style.transform='scaleX('+(alt>0?Math.min(window.scrollY/alt,1):0)+')';
+    nav.classList.toggle('presa',window.scrollY>8);
+  }
+  aoRolar(); window.addEventListener('scroll',aoRolar,{passive:true});
+
+  /* contadores */
+  function conta(el){
+    var fim=parseFloat(el.dataset.fim), dec=+el.dataset.dec, suf=el.dataset.suf||'';
+    if(reduz){el.textContent=el.dataset.conta+suf;return}
+    var t0=null, dur=1500;
+    function passo(t){
+      if(!t0)t0=t;
+      var p=Math.min((t-t0)/dur,1), e=1-Math.pow(1-p,3);
+      el.textContent=(fim*e).toFixed(dec).replace('.',',')+suf;
+      if(p<1)requestAnimationFrame(passo); else el.textContent=el.dataset.conta+suf;
+    }
+    requestAnimationFrame(passo);
+  }
+
+  /* carrossel */
+  var carro=document.getElementById('carro'), pontos=document.getElementById('pontos'),
+      sE=document.getElementById('setaEsq'), sD=document.getElementById('setaDir');
+  if(carro){
+    var itens=carro.querySelectorAll('.tiro');
+    itens.forEach(function(){pontos.insertAdjacentHTML('beforeend','<i></i>')});
+    var bolas=pontos.querySelectorAll('i');
+    function passoCarro(){return itens[0].getBoundingClientRect().width+24}
+    function sincroniza(){
+      var i=Math.round(carro.scrollLeft/passoCarro());
+      bolas.forEach(function(b,j){b.classList.toggle('on',j===i)});
+      sE.disabled=carro.scrollLeft<8;
+      sD.disabled=carro.scrollLeft>=carro.scrollWidth-carro.clientWidth-8;
+    }
+    sE.addEventListener('click',function(){carro.scrollLeft-=passoCarro()});
+    sD.addEventListener('click',function(){carro.scrollLeft+=passoCarro()});
+    carro.addEventListener('scroll',sincroniza,{passive:true});
+    carro.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'){e.preventDefault();carro.scrollLeft+=passoCarro()}
+      if(e.key==='ArrowLeft'){e.preventDefault();carro.scrollLeft-=passoCarro()}
+    });
+    window.addEventListener('resize',sincroniza);
+    sincroniza();
+  }
+
+  /* titulo palavra por palavra */
+  var tit=document.getElementById('titulo');
+  if(tit && !reduz){
+    tit.innerHTML = tit.textContent.trim().split(' ').map(function(pal,i){
+      return '<span class="p"><span style="transition-delay:'+(i*0.055).toFixed(3)+'s">'+pal+'</span></span>';
+    }).join(' ');
+  }
+
+  /* fita da regiao */
+  var fita=document.getElementById('fita');
+  if(fita){
+    var txt='';
+    dados.forEach(function(d){
+      txt+='<span class="'+(d[3]?'eu':'')+'">'+d[0]+' <b>'+d[1].toFixed(2).replace('.',',')+'%</b></span>';
+    });
+    fita.innerHTML=txt+txt;
+  }
+
+  /* linha do tempo */
+  var trilha=document.getElementById('trilha');
+  if(trilha){
+    var fill=document.getElementById('trilhaFill'), etapas=trilha.querySelectorAll('.etapa');
+    function atualizaTrilha(){
+      var ativos=0;
+      etapas.forEach(function(e){
+        var r=e.getBoundingClientRect();
+        if(r.top < window.innerHeight*0.72){e.classList.add('on');ativos++}
+      });
+      if(!ativos){fill.style.height='0px';return}
+      var ult=etapas[Math.min(ativos,etapas.length)-1];
+      var topo=trilha.getBoundingClientRect().top;
+      var marca=ult.querySelector('.etapa-no').getBoundingClientRect();
+      fill.style.height=Math.max(0,(marca.top-topo)+marca.height/2-14)+'px';
+    }
+    atualizaTrilha();
+    window.addEventListener('scroll',atualizaTrilha,{passive:true});
+    window.addEventListener('resize',atualizaTrilha);
+  }
+
+  /* entrada do herói */
+  requestAnimationFrame(function(){document.body.classList.add('pronto')});
+
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.sobe').forEach(function(e){e.classList.add('vis')});
+    document.querySelectorAll('[data-conta]').forEach(conta);
+    return;
+  }
+  var io=new IntersectionObserver(function(ents){
+    ents.forEach(function(en){
+      if(!en.isIntersecting)return;
+      en.target.classList.add('vis');
+      en.target.querySelectorAll('[data-conta]').forEach(conta);
+      io.unobserve(en.target);
+    })
+  },{rootMargin:'0px 0px -10% 0px',threshold:.06});
+  document.querySelectorAll('.sobe').forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
